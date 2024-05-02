@@ -1,0 +1,38 @@
+head/head
+body
+    script src="https://ace-aaa--travelsb02.sandbox.my.site.com/prospects/lightning/lightning.out.js"/script
+
+script
+
+    var id = '08p6s0000003f1I';
+    $Lightning.use("runtime_appointmentbooking:lightningOutGuest",
+        function() {                  // Callback once framework and app load
+            $Lightning.createComponent(
+                "lightning:flow",    // top-level component of your app
+                { 
+                    },    // attributes to set on the component when created
+                "lexcontainer",    // the DOM location to insert the component
+                function(component) {            // API name of the Flow
+                    console.log('Hi from callback for reschedule and cancel');
+
+
+                     var inputVariables = [
+                        {
+                            name: "ServiceAppointmentId",
+                            type: "String",
+                            value: id
+                        }
+                    ] 
+                    component.startFlow("ACE_Travel_Inbound_Reschedule_OR_Cancel_Appointment", inputVariables);
+                }
+            );
+        },    'https://ace-aaa--travelsb02.sandbox.my.site.com/prospects',  // Site endpoint
+            'session-id'
+    );
+/script
+div id="lexcontainer"
+
+pReschedule or Cancel/p
+/div
+/body
+
